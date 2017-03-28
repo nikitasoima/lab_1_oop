@@ -18,6 +18,9 @@ public:
 	Triangle(double _side_1, double _side_2, double _angle_3);
 
 private:
+	double pi = 3.14159265358;
 	double calculateThirdSide();
+	double getRadians(double);
+	double getDegr(double);
 };
 

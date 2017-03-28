@@ -3,10 +3,9 @@
 #include "math.h"
 
 using namespace std;
-double pi = 3.14;
 
-double getRadians(double);
-double getDegr(double);
+
+
 
 Triangle::Triangle(double _side_1, double _side_2, double _angle){
 	side_1 = _side_1;
@@ -16,11 +15,11 @@ Triangle::Triangle(double _side_1, double _side_2, double _angle){
 }
 
 void Triangle::increaseAngle(int number) {	
-	angle = angle * number; 
+	angle = getDegr(angle) * number; 
 }
 
 void Triangle::decreaseAngle(int number) {	
-	 angle = angle / number;
+	 angle = getDegr(angle) / number;
 }
 
 double* Triangle::getAngles() {
@@ -69,11 +68,11 @@ double** Triangle::getSidesByBisector(){
 
 }
 
-double getRadians(double _angle) {
+double Triangle::getRadians(double _angle) {
 	return (_angle * pi) / 180;
 }
 
-double getDegr(double _angle) {
+double Triangle::getDegr(double _angle) {
 	return (_angle * 180) / pi;
 }
 

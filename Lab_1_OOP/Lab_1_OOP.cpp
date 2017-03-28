@@ -12,8 +12,10 @@ Triangle** readTrianglesFromConsole(int num);
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	setlocale(LC_ALL, "Russian");
+
 	int num = 0;
-	cout << "Input count of triangles: ";
+	cout << "Введите количество треугольников: ";
 	cin >> num;
 
 	Triangle** triangles = readTrianglesFromConsole(num);
@@ -21,34 +23,34 @@ int _tmain(int argc, _TCHAR* argv[])
 	while (true) {
 		int index = 0;
 
-		cout << "Input triangle's index: ";
+		cout << "ВВедите номер треугольника: ";
 		cin >> index;
 
 		index--;
 
 		if (index < 0 || index >= num) {
-			cout << "Wrong index!";
+			cout << "Неправильный номер!";
 			continue;
 		}
 
 		char *comand = new char[256]{ NULL };
-		cout << "Input command: "
-			<< "1 - Increase angle "
-			<< "2 - Decrease angle "
-			<< "3 - Calculate bisector "
-			<< "4 - Calculate sides by bisector "
-			<< "5 - Info about triangles\n";
+		cout << "Введите команду:\n "
+			<< "1 - Увеличить угол\n "
+			<< "2 - Уменьшить угол\n "
+			<< "3 - Длина бисексрис\n "
+			<< "4 - Длина отрезков, на которые бисектриса делит сторону\n "
+			<< "5 - Величина углов\n";
 		cin >> comand;
 
 		if (strcmp(comand, "1") == 0) {
 			int number = 1;
 
-			cout << "Input numer of times ";
+			cout << "Количество раз: ";
 			cin >> number;
 
 			if (number == 0)
 			{
-				cout << "Incorrect data!";
+				cout << "Неверно!";
 			}
 
 			triangles[index]->increaseAngle(number);
@@ -60,12 +62,12 @@ int _tmain(int argc, _TCHAR* argv[])
 		if (strcmp(comand, "2") == 0) {
 			int number = 1;
 
-			cout << "Input numer of times ";
+			cout << "Количество раз: ";
 			cin >> number;
 
 			if (number == 0)
 			{
-				cout << "Incorrect data!";
+				cout << "Неверно!";
 			}
 
 			triangles[index]->decreaseAngle(number);
@@ -78,7 +80,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			for (int i = 0; i < 3; i++)
 			{
 				
-				cout << "The lenght of bisector " << i + 1 << " :" << bisectors[i] << endl;
+				cout << "Длинна бисектрисы " << i + 1 << " :" << bisectors[i] << endl;
 			}
 
 		}
@@ -87,10 +89,10 @@ int _tmain(int argc, _TCHAR* argv[])
 			double **side = triangles[index]->getSidesByBisector();
 			for (int i = 0; i < 3; i++)
 			{
-				cout << "Side: " << i + 1 << endl;
+				cout << "Сторона: " << i + 1 << endl;
 				for (int j = 0; j < 2; j++)
 				{
-					cout << "The lenght of sides (by bisector): " << side[i][j] <<  endl;
+					cout << "Длина отрезка: " << side[i][j] <<  endl;
 				}
 				
 			}
@@ -102,7 +104,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			for (int i = 0; i < 3; i++)
 			{
 
-				cout << "The size of angle " << i + 1 << " :" << angles[i] << endl;
+				cout << "Величина угла " << i + 1 << " : " << angles[i] << endl;
 			}
 		}
 
@@ -122,11 +124,11 @@ Triangle** readTrianglesFromConsole(int num) {
 			side_2 = 0,
 			angle = 30;
 
-		cout << "Input first side: ";
+		cout << "Введите размер первой стороны: ";
 		cin >> side_1;
-		cout << "Input second side: ";
+		cout << "Введите размер второй стороны: ";
 		cin >> side_2;
-		cout << "Input angle (degrees) between them: ";
+		cout << "Введите угол между ними(в градусах): ";
 		cin >> angle;
 
 		result[i] = new Triangle(side_1, side_2, angle);
